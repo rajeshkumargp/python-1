@@ -38,6 +38,19 @@ class MatrixTest(unittest.TestCase):
         matrix = Matrix("89 1903 3\n18 3 1\n9 4 800")
         self.assertEqual(matrix.column(2), [1903, 3, 4])
 
+    def test_mutable_row_whether_mutable_affects_matrix_object(self):
+        matrix = Matrix("1 2\n3 4")
+        r1 = matrix.row(1)
+        r1[0] = 11
+        r1_again = matrix.row(1)
+        self.assertNotEqual(r1, r1_again)
+
+    def test_mutable_column_whether_mutable_affects_matrix_object(self):
+        matrix = Matrix("1 2\n3 4")
+        c1 = matrix.column(1)
+        c1[0] = 11
+        c1_again = matrix.column(1)
+        self.assertNotEqual(c1, c1_again)
 
 if __name__ == "__main__":
     unittest.main()
